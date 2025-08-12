@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Meta -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Zarandooz | Personal Finance Manager</title>
+  <meta name="description" content="Zarandooz lets you track your daily expenses. Simple, private, and powerful." />
+  <link rel="canonical" href="https://zarandoozapp.ir" />
+  <link rel="icon" type="image/png" href="logo.png">
+
+  <!-- Styles: single-file, no external libs -->
+  <style>
+    /* ========== Design tokens ========== */
+    :root {
+      /* Default to light mode variables from your color scheme */
+      --bg: #fafafa;
+      --surface: #FFFFFF;
+      --surface-2: #f0f0f0;
+      --text: #4b4b4b;
+      --muted: #777777;
+      --muted-2: #afafaf;
+      --border: #e5e5e5;
+      --accent: #FFD369;
+      --accent-variant: #FFDF90;
+      --secondary: #B45AE8;
+      --secondary-variant: #E6BBFF;
+      --accent-text: #3d341a;
+
+      /* Shadows / radii */
+      --radius: 14px;
+      --shadow-1: 0 10px 30px hsl(45 100% 70% / .12), 0 2px 10px hsl(215 40% 2% / .1);
+      --shadow-2: 0 6px 18px hsl(215 50% 2% / .08);
+
+      /* Type scale */
+      --fs-xs: 12px;
+      --fs-sm: 14px;
+      --fs-base: 16px;
+      --fs-lg: 18px;
+      --fs-xl: 22px;
+      --fs-2xl: 28px;
+      --fs-3xl: 36px;
+      --fs-4xl: 56px;
+
+      /* Container */
+      --container: 1120px;
+    }
+
+    /* Set dark mode variables if the user prefers it */
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme='light']) {
+        --bg: #1B1C1E;
+        --surface: #2A2B2D;
+        /* Lighter surface for dark mode */
+        --surface-2: #333436;
+        /* Even lighter for nested elements */
+        --text: #FFFFFF;
+        --muted: #A7A7A7;
+        --muted-2: #757575;
+        --border: #363636;
+        --shadow-1: 0 10px 30px hsl(45 100% 70% / .12), 0 2px 10px hsl(215 40% 2% / .6);
+        --shadow-2: 0 6px 18px hsl(215 50% 2% / .5);
+      }
+    }
+
+    /* Explicitly set dark theme */
+    [data-theme='dark'] {
+      --bg: #1B1C1E;
+      --surface: #2A2B2D;
+      /* Lighter surface for dark mode */
+      --surface-2: #333436;
+      /* Even lighter for nested elements */
+      --text: #FFFFFF;
+      --muted: #A7A7A7;
+      --muted-2: #757575;
+      --border: #363636;
+      --shadow-1: 0 10px 30px hsl(45 100% 70% / .12), 0 2px 10px hsl(215 40% 2% / .6);
+      --shadow-2: 0 6px 18px hsl(215 50% 2% / .5);
+    }
+
+    /* Explicitly set light theme */
+    [data-theme='light'] {
+      --bg: #fafafa;
+      --surface: #FFFFFF;
+      --surface-2: #f0f0f0;
+      --text: #4b4b4b;
+      --muted: #777777;
+      --muted-2: #afafaf;
+      --border: #e5e5e5;
+      --shadow-1: 0 10px 30px hsl(45 100% 70% / .12), 0 2px 10px hsl(215 40% 2% / .1);
+      --shadow-2: 0 6px 18px hsl(215 50% 2% / .08);
+    }
+
+    /* ========== Resets ========== */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background-color: var(--bg);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    select {
+      font: inherit;
+    }
+
+    /* ========== Helpers ========== */
+    .container {
+      width: min(100%, calc(var(--container) + 48px));
+      margin-inline: auto;
+      padding-inline: 24px;
+    }
+
+    .visually-hidden {
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+
+    /* ========== Header ========== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: hsl(from var(--bg) h s l / .85);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: .2px;
+      font-size: var(--fs-xl);
+    }
+
+    .logo-img {
+      width: 40px;
+      /* Or your desired width */
+      height: 40px;
+      /* Or your desired height */
+      border-radius: 50%;
+      /* Optional: makes the logo circular */
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: var(--fs-sm);
+      color: var(--muted);
+    }
+
+    .nav-links a {
+      padding: 8px 10px;
+      border-radius: 10px;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      background: var(--surface-2);
+    }
+
+    /* Theme switcher */
+    .theme-switcher {
+      background-color: var(--surface);
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 8px;
+      font-size: var(--fs-sm);
+      cursor: pointer;
+    }
+
+    .theme-switcher:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* ========== Buttons ========== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: .2px;
+      border-radius: 12px;
+      padding: 12px 18px;
+      border: 1px solid transparent;
+      transition: transform .18s ease, background-color .18s ease, box-shadow .18s ease, border-color .18s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(180deg, var(--accent-variant), var(--accent));
+      color: var(--accent-text);
+      box-shadow: var(--shadow-1);
+      border-color: hsl(45 75% 60% / .3);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(180deg, var(--accent), var(--accent-600));
+    }
+
+    .btn .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #a98b4a;
+      outline: 3px solid var(--accent-variant);
+      display: inline-block;
+    }
+
+    /* ========== Hero ========== */
+    .hero {
+      padding: 72px 0 28px;
+    }
+
+    .hero-wrap {
+      display: grid;
+      align-items: center;
+      gap: 40px;
+      grid-template-columns: 1.1fr .9fr;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: var(--fs-sm);
+      color: var(--muted);
+      letter-spacing: .24px;
+      padding: 6px 10px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--surface);
+      box-shadow: var(--shadow-2);
+    }
+
+    h1 {
+      font-size: clamp(38px, 6vw, var(--fs-4xl));
+      line-height: 1.05;
+      margin: 14px 0 12px;
+      letter-spacing: .2px;
+    }
+
+    .lead {
+      font-size: clamp(18px, 2vw, 22px);
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .note {
+      margin-top: 10px;
+      font-size: var(--fs-sm);
+      color: var(--muted-2);
+    }
+
+    /* Right visual (CSS-only devices) */
+    .devices {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 28px;
+      min-height: 320px;
+    }
+
+    .phone {
+      width: 190px;
+      height: 360px;
+      border-radius: 28px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .phone::before {
+      content: "";
+      position: absolute;
+      inset: 12px 12px auto 12px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--surface-2);
+      box-shadow: 0 0 0 1px hsl(from var(--border) h s l / .6);
+    }
+
+    .phone-screen {
+      position: absolute;
+      inset: 28px;
+      border-radius: 16px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      padding: 12px;
+    }
+
+    .phone-ui-row {
+      height: 12px;
+      border-radius: 8px;
+      background: hsl(from var(--accent) h s l / .8);
+      margin-bottom: 10px;
+    }
+
+    .laptop {
+      width: 360px;
+      height: 230px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px 16px 6px 6px;
+      position: relative;
+      box-shadow: var(--shadow-1);
+      overflow: hidden;
+    }
+
+    .laptop::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -10px;
+      width: 86%;
+      height: 12px;
+      border-radius: 0 0 10px 10px;
+      background: var(--surface-2);
+      box-shadow: 0 -1px 0 hsl(from var(--border) h s l / .8) inset;
+    }
+
+    .laptop-screen {
+      position: absolute;
+      inset: 10px;
+      border-radius: 10px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+    }
+
+    .laptop .bar {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      right: 18px;
+      height: 12px;
+      border-radius: 8px;
+      background: hsl(from var(--accent) h s l / .8);
+    }
+
+    /* ========== Features ========== */
+    .section {
+      padding: 56px 0;
+    }
+
+    .section h2 {
+      text-align: center;
+      font-size: var(--fs-3xl);
+      margin: 0 0 46px;
+      position: relative;
+      padding-bottom: 20px;
+    }
+
+    .section h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(to right, transparent, var(--accent-600), transparent);
+      opacity: 0.6;
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow-2);
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+      min-height: 140px;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: hsl(from var(--accent) h s 50% / .5);
+      background: var(--surface-2);
+    }
+
+    .card .icon {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      background: hsl(from var(--secondary) h s l / .15);
+      color: var(--secondary-variant);
+      font-weight: 900;
+      font-size: 18px;
+      border: 1px solid hsl(from var(--secondary) h s l / .2);
+    }
+
+    .card h3 {
+      margin: 0 0 6px;
+      font-size: var(--fs-lg);
+    }
+
+    .card p {
+      margin: 0;
+      font-size: var(--fs-sm);
+      color: var(--muted);
+    }
+
+    /* ========== Mentions (scroll-snap) ========== */
+    @keyframes scroll {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    .mentions .scroller-wrap {
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+      mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+    }
+
+    .mentions .scroller {
+      display: flex;
+      gap: 14px;
+      width: fit-content;
+      animation: scroll 40s linear infinite;
+    }
+
+    .mentions .scroller:hover {
+      animation-play-state: paused;
+    }
+
+    .mentions .pill {
+      flex: 0 0 320px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      color: var(--muted);
+      min-height: 120px;
+    }
+
+    .mentions .pill strong {
+      color: var(--text);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    /* ========== Footer ========== */
+    footer {
+      border-top: 1px solid var(--border);
+      margin-top: 60px;
+    }
+
+    .footer-wrap {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 0;
+      flex-wrap: wrap;
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      padding: 6px 8px;
+      border-radius: 8px;
+    }
+
+    .footer-links a:hover {
+      background: var(--surface-2);
+      color: var(--text);
+    }
+
+    /* ========== Responsive ========== */
+    @media (max-width: 1024px) {
+      .hero {
+        padding: 56px 0 20px;
+      }
+
+      .hero-wrap {
+        grid-template-columns: 1fr;
+        gap: 26px;
+      }
+
+      .devices {
+        order: -1;
+        min-height: 260px;
+      }
+
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        padding: 12px 0;
+      }
+
+      .brand {
+        font-size: 18px;
+      }
+
+      h1 {
+        font-size: clamp(32px, 8vw, 42px);
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-wrap {
+        justify-content: center;
+        text-align: center;
+      }
+
+      .nav-right {
+        gap: 8px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      /* Hide text links on mobile */
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .btn,
+      .card,
+      .mentions .scroller {
+        transition: none;
+        animation: none;
+      }
+    }
+  </style>
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"SoftwareApplication",
+    "name":"Zarandooz",
+    "applicationCategory":"FinanceApplication",
+    "operatingSystem":"Windows, macOS, Linux, Android, iOS",
+    "description":"Track your daily expenses and manage your budget. Simple, private, and powerful.",
+    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+    "url":"zarandoozapp.ir"
+  }
+  </script>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container nav" role="navigation" aria-label="Primary">
+      <a class="brand" href="#top" aria-label="Zarandooz - Home">
+        <img src="logo.png" alt="Zarandooz Logo" class="logo-img">
+        <span>Zarandooz</span>
+      </a>
+      <div class="nav-right">
+        <nav class="nav-links">
+          <a href="#top" aria-label="Go to Download">Download</a>
+          <a href="#features" aria-label="Go to Features">Features</a>
+          <a href="#footer" aria-label="Go to Footer">More</a>
+        </nav>
+        <select class="theme-switcher" aria-label="Theme switcher">
+          <option value="system">System</option>
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-wrap">
+        <div>
+          <span class="eyebrow">Simple • Private • Powerful</span>
+          <h1>Take control of your daily expenses.</h1>
+          <p class="lead">Zarandooz is a simple, private, personal finance app to track your daily expenses and manage
+            your budget.</p>
+          <div class="cta" id="download-button">
+            <a class="btn btn-primary" href="#" aria-label="Download Zarandooz">
+              <span class="dot" aria-hidden="true"></span> Download
+            </a>
+          </div>
+          <p class="note">No ads. No tracking. Your data is private.</p>
+        </div>
+
+        <!-- CSS-only device mockups -->
+        <div class="devices" aria-hidden="true">
+          <div class="phone">
+            <div class="phone-screen">
+              <div class="phone-ui-row" style="width:70%"></div>
+              <div class="phone-ui-row" style="width:55%"></div>
+              <div class="phone-ui-row" style="width:86%"></div>
+              <div class="phone-ui-row" style="width:40%"></div>
+            </div>
+          </div>
+          <div class="laptop">
+            <div class="laptop-screen">
+              <div class="bar" style="width:64%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="section">
+      <div class="container">
+        <h2>Features</h2>
+        <div class="grid" role="list">
+          <article class="card" role="listitem">
+            <div class="icon">📊</div>
+            <h3>Track Everything</h3>
+            <p>Track your income and expenses effortlessly. Categorize transactions to see where your money goes.</p>
+          </article>
+          <article class="card" role="listitem">
+            <div class="icon">📅</div>
+            <h3>Budget Planning</h3>
+            <p>Set monthly budgets for different categories and get notified when you're close to your limit.</p>
+          </article>
+          <article class="card" role="listitem">
+            <div class="icon">📈</div>
+            <h3>Insightful Reports</h3>
+            <p>Visualize your spending habits with easy-to-read charts and reports. Make informed financial decisions.
+            </p>
+          </article>
+          <article class="card" role="listitem">
+            <div class="icon">🔒</div>
+            <h3>Secure & Private</h3>
+            <p>Your financial data is stored securely on your device. We respect your privacy.</p>
+          </article>
+          <article class="card" role="listitem">
+            <div class="icon">🎯</div>
+            <h3>Goal Setting</h3>
+            <p>Set financial goals, like saving for a vacation or a new car, and track your progress.</p>
+          </article>
+          <article class="card" role="listitem">
+            <div class="icon">🪄</div>
+            <h3>Simple Interface</h3>
+            <p>A clean and intuitive interface designed for quick and easy expense logging.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mentions -->
+    <section class="section mentions">
+      <div class="container">
+        <h2>What people are saying</h2>
+        <div class="scroller-wrap">
+          <div class="scroller" aria-label="Mentions carousel">
+            <!-- Content is duplicated for seamless scroll effect -->
+            <div class="pill"><strong>TechCrunch</strong> The simplest way to manage your money.</div>
+            <div class="pill"><strong>The Verge</strong> Finally, a budgeting app that doesn't feel like a chore.</div>
+            <div class="pill"><strong>App Store Review</strong> I've tried them all, Zarandooz is the best. 5 stars!
+            </div>
+            <div class="pill"><strong>Product Hunt</strong> Beautifully designed and incredibly useful.</div>
+            <div class="pill"><strong>Reddit r/personalfinance</strong> A must-have for anyone serious about their
+              finances.</div>
+            <!-- Duplicate -->
+            <div class="pill"><strong>TechCrunch</strong> The simplest way to manage your money.</div>
+            <div class="pill"><strong>The Verge</strong> Finally, a budgeting app that doesn't feel like a chore.</div>
+            <div class="pill"><strong>App Store Review</strong> I've tried them all, Zarandooz is the best. 5 stars!
+            </div>
+            <div class="pill"><strong>Product Hunt</strong> Beautifully designed and incredibly useful.</div>
+            <div class="pill"><strong>Reddit r/personalfinance</strong> A must-have for anyone serious about their
+              finances.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="container footer-wrap" role="contentinfo">
+      <div>&copy; 2024 Zarandooz</div>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    // Handles theme switching
+    const themeSwitcher = document.querySelector('.theme-switcher');
+    const doc = document.documentElement;
+    const storageKey = 'zarandooz-theme';
+
+    // Apply the theme from localStorage or system preference
+    function applyTheme(theme) {
+      if (theme === 'system') {
+        doc.removeAttribute('data-theme');
+        localStorage.removeItem(storageKey);
+      } else {
+        doc.setAttribute('data-theme', theme);
+        localStorage.setItem(storageKey, theme);
+      }
+      themeSwitcher.value = theme;
+    }
+
+    // Get the preferred theme
+    const savedTheme = localStorage.getItem(storageKey) || 'system';
+
+    // Set the theme on initial load
+    applyTheme(savedTheme);
+
+    // Listen for changes on the switcher
+    themeSwitcher.addEventListener('change', (e) => {
+      applyTheme(e.target.value);
+    });
+  </script>
+</body>
+
+</html>
