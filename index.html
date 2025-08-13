@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-  <!-- Meta -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Zarandooz | Personal Finance Manager</title>
@@ -10,7 +9,6 @@
   <link rel="canonical" href="https://zarandoozapp.ir" />
   <link rel="icon" type="image/png" href="logo.png">
 
-  <!-- Styles: single-file, no external libs -->
   <style>
     /* ========== Design tokens ========== */
     :root {
@@ -333,6 +331,7 @@
       box-shadow: var(--shadow-1);
       position: relative;
       overflow: hidden;
+      transition: transform 0.3s ease;
     }
 
     .phone::before {
@@ -560,6 +559,11 @@
       .hero-wrap {
         grid-template-columns: 1fr;
         gap: 26px;
+        text-align: center;
+      }
+
+      .cta {
+        justify-content: center;
       }
 
       .devices {
@@ -602,6 +606,22 @@
         display: none;
       }
 
+      .devices {
+        min-height: auto;
+        padding-bottom: 20px;
+      }
+
+      .laptop {
+        display: none;
+      }
+
+      .phone {
+        transform: scale(0.9);
+      }
+
+      .mentions .pill {
+        flex-basis: 280px;
+      }
       /* Hide text links on mobile */
     }
 
@@ -616,7 +636,6 @@
     }
   </style>
 
-  <!-- Structured data -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -632,7 +651,6 @@
 </head>
 
 <body>
-  <!-- Header -->
   <header>
     <div class="container nav" role="navigation" aria-label="Primary">
       <a class="brand" href="#top" aria-label="Zarandooz - Home">
@@ -655,7 +673,6 @@
   </header>
 
   <main id="top">
-    <!-- Hero -->
     <section class="hero">
       <div class="container hero-wrap">
         <div>
@@ -671,7 +688,6 @@
           <p class="note">No ads. No tracking. Your data is private.</p>
         </div>
 
-        <!-- CSS-only device mockups -->
         <div class="devices" aria-hidden="true">
           <div class="phone">
             <div class="phone-screen">
@@ -690,7 +706,6 @@
       </div>
     </section>
 
-    <!-- Features -->
     <section id="features" class="section">
       <div class="container">
         <h2>Features</h2>
@@ -730,13 +745,11 @@
       </div>
     </section>
 
-    <!-- Mentions -->
     <section class="section mentions">
       <div class="container">
         <h2>What people are saying</h2>
         <div class="scroller-wrap">
           <div class="scroller" aria-label="Mentions carousel">
-            <!-- Content is duplicated for seamless scroll effect -->
             <div class="pill"><strong>TechCrunch</strong> The simplest way to manage your money.</div>
             <div class="pill"><strong>The Verge</strong> Finally, a budgeting app that doesn't feel like a chore.</div>
             <div class="pill"><strong>App Store Review</strong> I've tried them all, Zarandooz is the best. 5 stars!
@@ -744,7 +757,6 @@
             <div class="pill"><strong>Product Hunt</strong> Beautifully designed and incredibly useful.</div>
             <div class="pill"><strong>Reddit r/personalfinance</strong> A must-have for anyone serious about their
               finances.</div>
-            <!-- Duplicate -->
             <div class="pill"><strong>TechCrunch</strong> The simplest way to manage your money.</div>
             <div class="pill"><strong>The Verge</strong> Finally, a budgeting app that doesn't feel like a chore.</div>
             <div class="pill"><strong>App Store Review</strong> I've tried them all, Zarandooz is the best. 5 stars!
@@ -758,7 +770,6 @@
     </section>
   </main>
 
-  <!-- Footer -->
   <footer id="footer">
     <div class="container footer-wrap" role="contentinfo">
       <div>&copy; 2024 Zarandooz</div>
