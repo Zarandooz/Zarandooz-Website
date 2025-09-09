@@ -95,6 +95,24 @@ body {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo:focus {
+  text-decoration: none;
+  color: inherit;
+  outline: none;
 }
 
 .logo-image {
@@ -1739,4 +1757,137 @@ body {
 .phone-image {
   bottom: 8rem;
   position: relative;
+}
+
+/* Pricing Plans */
+.pricing {
+  padding: 120px 22rem 200px;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.plan-card {
+  background: #f7f7f7;
+  border-radius: 16px;
+  padding: 2rem 2rem;
+  text-align: center;
+  position: relative;
+  border: 2px solid #e9e9e9;
+}
+
+.plan-badge {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: -60px auto 10px;
+  background: #e9e9e9;
+  color: #333;
+  font-size: 1.4rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.plan-title {
+  font-size: 1.8rem;
+  color: #4b4b4b;
+  margin: 0.5rem 0 0.75rem;
+  font-weight: 800;
+}
+
+.plan-duration {
+  color: #666;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+.plan-prices {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.plan-old-price {
+  color: #9b9b9b;
+  text-decoration: line-through;
+  font-weight: 700;
+}
+
+.plan-price {
+  color: #4b4b4b;
+  font-size: 1.8rem;
+  font-weight: 900;
+}
+
+/* Color accents per plan */
+.plan-silver {
+  border-color: #d6d6d6;
+}
+.plan-silver .plan-badge {
+  background: #dcdcdc;
+}
+
+.plan-gold {
+  border-color: #ffd369;
+  box-shadow: 0 8px 24px rgba(255, 211, 105, 0.25);
+}
+.plan-gold .plan-badge {
+  background: #ffd369;
+}
+.plan-gold .download-btn.primary {
+  background: #ffd369;
+  color: #333;
+}
+
+.plan-bronze {
+  border-color: #ffa85c;
+}
+.plan-bronze .plan-badge {
+  background: #ffa85c;
+}
+
+@media (max-width: 992px) {
+  .pricing {
+    padding: 80px 0 60px;
+  }
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.about-section {
+  margin: 5rem;
+}
+
+.about-title {
+  color: #4b4b4b;
+  font-weight: 700;
+  line-height: 65px;
+}
+
+.about-text {
+  color: #777777 !important;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.about-contact {
+  color: #777777 !important;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.space {
+  margin: 20px;
 }
