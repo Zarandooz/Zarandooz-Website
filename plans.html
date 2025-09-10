@@ -32,41 +32,10 @@
     />
   </head>
   <body>
-    <!-- Header -->
-    <header class="header">
-      <div class="header-container">
-        <div class="header-left">
-          <a href="index.html" class="logo">
-            <img src="images/logo.png" alt="زراندوز" class="logo-image" />
-            <span class="logo-text">زراندوز</span>
-          </a>
-        </div>
-
-        <nav class="header-nav">
-          <a href="plans.html">پلن‌ها</a>
-          <a href="index.html#features">امکانات پیشرفته</a>
-          <a href="index.html#faq">سوالات متداول</a>
-          <a href="index.html#about.html">درباره ما</a>
-        </nav>
-
-        <div class="header-nav">
-          <button class="download-btn primary">دانلود و نصب زراندوز</button>
-        </div>
-
-        <button class="mobile-menu-toggle" id="mobile-menu-toggle">
-          <i class="fas fa-bars"></i>
-        </button>
-      </div>
-    </header>
-
-    <!-- Mobile Navigation -->
-    <nav class="mobile-nav" id="mobile-nav">
-      <a href="plans.html">پلن‌ها</a>
-      <a href="#features">امکانات پیشرفته</a>
-      <a href="#faq">سوالات متداول</a>
-      <a href="#about">درباره ما</a>
-      <a href="#" class="mobile-download-btn">دانلود و نصب زراندوز</a>
-    </nav>
+    <!-- Header Include -->
+    <div include-html="src/components/header.html"></div>
+    <!-- Mobile Navigation Include -->
+    <div include-html="src/components/nav.html"></div>
 
     <!-- Pricing Plans (replaces hero) -->
     <section class="pricing" id="plans">
@@ -162,8 +131,45 @@
           <h2>امکانات پیشرفته زراندوز</h2>
           <p>و کلی ابزار دیگه که می‌تونی تو نرم‌افزار ببینیشون</p>
         </div>
-        <div class="features-grid">
+        <div class="options-grid">
           <div class="feature-card">
+            <div class="feature-visual">
+              <i
+                class="fas fa-bell"
+                style="font-size: 42px; color: #4b4b4b"
+              ></i>
+            </div>
+            <div class="card-header">
+              <p>بودجه بندی</p>
+            </div>
+            <p>
+              برای هر دسته‌بندی بودجه ماهانه تعیین کن تا دخل‌وخرجت دستت باشه
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-visual">
+              <i
+                class="fas fa-search"
+                style="font-size: 42px; color: #4b4b4b"
+              ></i>
+            </div>
+            <div class="card-header">
+              <p>جستجوی تراکنش‌ها</p>
+            </div>
+            <p>
+              با جستجوی کلیدواژه موردنظرت، می‌تونی هر تراکنش‌ و یادداشتی رو در
+              کمترین زمان پیدا کنی
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-visual">
+              <i
+                class="fas fa-chart-pie"
+                style="font-size: 42px; color: #4b4b4b"
+              ></i>
+            </div>
             <div class="card-header">
               <p>یادداشت و یادآور</p>
             </div>
@@ -171,198 +177,102 @@
               پرداخت‌های مهم مثل اجاره و قسط رو یادداشت کن تا زراندوز سر موعد
               یادآوری کنه
             </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-visual">
+              <i class="fa fa-th" style="font-size: 42px; color: #4b4b4b"></i>
+            </div>
+            <div class="card-header">
+              <p>دسته بندی تراکنش ها</p>
+            </div>
+            <p>
+              به میزان دلخواه دسته‌بندی بساز و تصویر واضح تری از دخل و خرجت
+              داشته باش
+            </p>
+          </div>
+
+          <div class="feature-card">
             <div class="feature-visual">
               <i
-                class="fas fa-bell"
+                class="fa fa-file-text"
                 style="font-size: 42px; color: #4b4b4b"
               ></i>
             </div>
-          </div>
-
-          <div class="feature-card">
-            <div class="card-header">
-              <p>جستجوی تراکنش‌ها</p>
-            </div>
-            <p>
-              با جستجوی کلیدواژه، تراکنش و یادداشت‌هاتو در کمترین زمان پیدا کن
-            </p>
-            <div class="feature-visual">
-              <img src="images/search.png" width="120" />
-            </div>
-          </div>
-
-          <div class="feature-card">
-            <div class="card-header">
-              <p>بودجه بندی</p>
-            </div>
-            <p>
-              برای هر دسته‌بندی، بودجه ماهانه تعیین کن تا دخل‌وخرجت دستت باشه
-            </p>
-            <div class="feature-visual">
-              <i
-                class="fas fa-chart-pie"
-                style="font-size: 42px; color: #4b4b4b"
-              ></i>
-            </div>
-          </div>
-
-          <div class="feature-card">
-            <div class="card-header">
-              <p>پشتیبان‌گیری خودکار</p>
-            </div>
-            <p>اطلاعاتت به‌صورت خودکار ذخیره می‌شه و همیشه در دسترس هستن</p>
-            <div class="feature-visual">
-              <img src="images/backup.png" width="120" />
-            </div>
-          </div>
-
-          <div class="feature-card">
             <div class="card-header">
               <p>حساب‌کتاب‌های دلخواه</p>
             </div>
-            <p>حساب‌کتاب‌های مختلف رو اضافه کن و راحت مدیریت‌شون کن</p>
-            <div class="feature-visual">
-              <img src="images/sources.png" width="120" />
-            </div>
+            <p>حساب‌کتاب‌های مختلفت رو اضافه کن و راحت مدیریتشون کن</p>
           </div>
 
           <div class="feature-card">
-            <div class="card-header">
-              <p>دسته بندی تراکنش‌ها</p>
-            </div>
-            <p>
-              به میزان دلخواه دسته‌بندی بساز و تصویر واضح‌تری از دخل و خرج داشته
-              باش
-            </p>
-            <div class="feature-visual">
-              <img src="images/categ.png" width="120" />
-            </div>
-          </div>
-
-          <div class="feature-card">
-            <div class="card-header">
-              <p>پشتیبانی سریع</p>
-            </div>
-            <p>هر مشکلی که داشتی، کافیه به ما اطلاع بدی تا سریع رسیدگی کنیم</p>
             <div class="feature-visual">
               <i
-                class="fas fa-headset"
+                class="fa fa-cloud"
                 style="font-size: 42px; color: #4b4b4b"
               ></i>
             </div>
+            <div class="card-header">
+              <p>پشتیبان‌گیری خودکار</p>
+            </div>
+            <p>اطلاعاتت بصورت خودکار ذخیره می شن و همیشه در دسترس هستن</p>
           </div>
 
           <div class="feature-card">
+            <div class="feature-visual">
+              <i
+                class="fa fa-bar-chart"
+                style="font-size: 42px; color: #4b4b4b"
+              ></i>
+            </div>
+            <div class="card-header">
+              <p>داده‌هات روی نمودار</p>
+            </div>
+            <p>
+              با نمودارهای زراندوز، می‌تونی ببینی پول‌هات رو چطور داری خرج
+              می‌کنی
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-visual">
+              <i
+                class="fa fa-plane"
+                style="font-size: 42px; color: #4b4b4b"
+              ></i>
+            </div>
             <div class="card-header">
               <p>بدون تبلیغ، بدون حواس‌پرتی</p>
             </div>
-            <p>با خرید اشتراک، فقط روی دخل‌وخرج‌هات تمرکز کن؛ تبلیغ نمی‌بینی</p>
-            <div class="feature-visual">
-              <i
-                class="fas fa-bullhorn"
-                style="font-size: 42px; color: #4b4b4b"
-              ></i>
-            </div>
+            <p>
+              با خرید اشتراک زراندوز فقط روی دخل‌وخرج‌هات تمرکز کن چون دیگه
+              تبلیغ نمی‌بینی
+            </p>
           </div>
 
           <div class="feature-card">
-            <div class="card-header">
-              <p>داده‌ها روی نمودار</p>
-            </div>
-            <p>
-              با نمودارهای زراندوز، می‌تونی ببینی پول‌هات رو چطور خرج می‌کنی
-            </p>
             <div class="feature-visual">
               <i
-                class="fas fa-chart-line"
+                class="fa fa-headset"
                 style="font-size: 42px; color: #4b4b4b"
               ></i>
             </div>
+            <div class="card-header">
+              <p>پشتیبانی سریع</p>
+            </div>
+            <p>
+              هر مشکلی که داشته باشی، کافیه به ما اطلاع بدی تا به‌سرعت رسیدگی
+              کنیم
+            </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Contact Section - Box above footer -->
-    <section class="contact-box" id="about">
-      <div class="container">
-        <div class="contact-header">
-          <div class="support-icon">
-            <i class="fas fa-headset"></i>
-          </div>
-          <h2>با ما در ارتباط باشید</h2>
-          <p>سوالات، پیشنهادات و انتقادات خود را با ما به اشتراک بگذارید</p>
-        </div>
-        <div class="contact-form">
-          <div class="form-group">
-            <input
-              type="tel"
-              placeholder="شماره موبایل"
-              class="form-input"
-              dir="rtl"
-            />
-          </div>
-          <div class="form-group">
-            <textarea
-              placeholder="پیام شما"
-              class="form-textarea"
-              dir="rtl"
-            ></textarea>
-          </div>
-          <button class="submit-btn">
-            <i class="fas fa-paper-plane"></i>
-            ارسال
-          </button>
-        </div>
-      </div>
-    </section>
+    <div include-html="src/components/contact.html"></div>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="footer-top">
-        <div class="container padding-60">
-          <div class="footer-content">
-            <div class="footer-section footer-logo-section">
-              <div class="footer-logo">
-                <img
-                  src="images/logo-black.png"
-                  alt="زراندوز"
-                  class="logo-image"
-                />
-                <span class="logo-text">زراندوز</span>
-              </div>
-              <p class="footer-description">
-                تمام حقوق مادی و معنوی این وبسایت متعلق به <a>زراندوز</a> می
-                باشد
-              </p>
-            </div>
-
-            <div class="footer-section footer-social-section">
-              <div class="social-icons">
-                <a href="#" class="social-icon" title="اینستاگرام">
-                  <i class="fab fa-instagram"></i>
-                </a>
-                <a href="#" class="social-icon" title="تلگرام">
-                  <i class="fab fa-telegram"></i>
-                </a>
-                <a href="#" class="social-icon" title="واتساپ">
-                  <i class="fab fa-whatsapp"></i>
-                </a>
-                <a href="#" class="social-icon" title="ایمیل">
-                  <i class="fas fa-envelope"></i>
-                </a>
-              </div>
-              <div class="social-icons" style="margin-top: 30px">
-                <a href="about.html" class="text">درباره ما</a>
-                <a href="policies.html" class="text">حریم خصوصی</a>
-                <a href="rules.html" class="text">قوانین و مقررات</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-
+    <div include-html="src/components/footer.html"></div>
+    <script src="src/components/include-html.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

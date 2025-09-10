@@ -345,11 +345,19 @@ body {
   gap: 2rem;
 }
 
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
 .feature-card {
   background: #fffccc;
   padding: 2rem;
   border-radius: 11px;
   transition: transform 0.3s ease;
+  align-content: center;
+  text-align: center;
 }
 
 .feature-card:hover {
@@ -385,7 +393,7 @@ body {
 }
 
 .feature-visual {
-  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
   justify-self: center;
   text-align: center;
 }
@@ -399,6 +407,7 @@ body {
   font-weight: 700;
   font-size: 24px;
   line-height: 65px;
+  justify-self: center;
 }
 
 /* Budget Cards */
@@ -995,6 +1004,7 @@ body {
     font-size: 20px;
     line-height: 1.4;
     margin-bottom: 1rem;
+    justify-self: center;
   }
 
   .feature-visual img {
@@ -1181,6 +1191,7 @@ body {
     font-size: 20px;
     line-height: 1.4;
     margin-bottom: 1rem;
+    justify-self: center;
   }
 
   .feature-visual img {
@@ -1433,6 +1444,7 @@ body {
   .card-header {
     font-size: 18px;
     line-height: 1.3;
+    justify-self: center;
   }
 
   .feature-card p {
@@ -1613,6 +1625,7 @@ body {
 
   .card-header {
     font-size: 16px;
+    justify-self: center;
   }
 
   .rectangle-82 {
@@ -1761,7 +1774,7 @@ body {
 
 /* Pricing Plans */
 .pricing {
-  padding: 120px 22rem 200px;
+  padding: 10rem;
 }
 
 .pricing-grid {
@@ -1890,4 +1903,8 @@ body {
 
 .space {
   margin: 20px;
+}
+
+.line-height-48 {
+  line-height: 48px;
 }
