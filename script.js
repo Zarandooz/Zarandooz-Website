@@ -9,36 +9,48 @@ window.addEventListener('scroll', function() {
     }
 });
 
-// Contact form AJAX submission
-document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('contactForm');
-    if (form) {
-        form.addEventListener('submit', async function (e) {
-            e.preventDefault();
-            const email = form.email.value;
-            const message = form.message.value;
-            const statusDiv = document.getElementById('formStatus');
-            statusDiv.textContent = '';
-            try {
-                const res = await fetch('/api/contact', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, message })
-                });
-                if (res.ok) {
-                    statusDiv.textContent = 'پیام شما با موفقیت ارسال شد!';
-                    form.reset();
-                } else {
-                    statusDiv.textContent = 'ارسال پیام با خطا مواجه شد.';
-                }
-            } catch (err) {
-                statusDiv.textContent = 'ارسال پیام با خطا مواجه شد.';
+// Wait for DOM to be fully loaded
+function zarandoozInitMenu() {
+    // Modern Mobile Menu Functionality
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileNav = document.getElementById('mobile-nav');
+    const mobileOverlay = document.getElementById('mobile-menu-overlay');
+    const mobileNavClose = document.getElementById('mobile-nav-close');
+
+    function openMobileMenu() {
+        mobileNav.classList.add('active');
+        mobileOverlay.classList.add('active');
+        mobileMenuToggle.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeMobileMenu() {
+        mobileNav.classList.remove('active');
+        mobileOverlay.classList.remove('active');
+        mobileMenuToggle.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    if (mobileMenuToggle && mobileNav && mobileOverlay) {
+        mobileMenuToggle.onclick = function(e) {
+            e.stopPropagation();
+            if (mobileNav.classList.contains('active')) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
             }
+        };
+        if (mobileNavClose) {
+            mobileNavClose.onclick = closeMobileMenu;
+        }
+        mobileOverlay.onclick = closeMobileMenu;
+        // Close menu on ESC
+        document.onkeydown = function(e) {
+            if (e.key === 'Escape') closeMobileMenu();
+        };
+        // Close menu when clicking a link
+        mobileNav.querySelectorAll('a').forEach(link => {
+            link.onclick = closeMobileMenu;
         });
     }
-});
-// Wait for DOM to be fully loaded
-document.addEventListener('DOMContentLoaded', function() {
     
     // FAQ Accordion functionality
     const faqItems = document.querySelectorAll('.faq-item');
@@ -66,40 +78,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Mobile menu functionality
-    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-    const mobileNav = document.getElementById('mobile-nav');
-    
-    if (mobileMenuToggle && mobileNav) {
-        mobileMenuToggle.addEventListener('click', function() {
-            mobileNav.classList.toggle('active');
-            const icon = this.querySelector('i');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
-        });
-        
-        // Close mobile menu when clicking on a link
-        const mobileNavLinks = mobileNav.querySelectorAll('a');
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                mobileNav.classList.remove('active');
-                const icon = mobileMenuToggle.querySelector('i');
-                icon.classList.add('fa-bars');
-                icon.classList.remove('fa-times');
-            });
-        });
-        
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!mobileMenuToggle.contains(e.target) && !mobileNav.contains(e.target)) {
-                mobileNav.classList.remove('active');
-                const icon = mobileMenuToggle.querySelector('i');
-                icon.classList.add('fa-bars');
-                icon.classList.remove('fa-times');
-            }
-        });
-    }
-
     // Smooth scrolling for navigation links
     const navLinks = document.querySelectorAll('a[href^="#"]');
     
@@ -174,63 +152,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Notification system
-    function showNotification(message, type = 'info') {
-        // Remove existing notifications
-        const existingNotifications = document.querySelectorAll('.notification');
-        existingNotifications.forEach(notification => notification.remove());
-        
-        // Create notification element
-        const notification = document.createElement('div');
-        notification.className = `notification notification-${type}`;
-        notification.innerHTML = `
-            <div class="notification-content">
-                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
-                <span>${message}</span>
-                <button class="notification-close">&times;</button>
-            </div>
-        `;
-        
-        // Add styles
-        notification.style.cssText = `
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            background: ${type === 'success' ? '#4CAF50' : type === 'error' ? '#f44336' : '#2196F3'};
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            z-index: 10000;
-            transform: translateX(400px);
-            transition: transform 0.3s ease;
-            max-width: 400px;
-        `;
-        
-        // Add to page
-        document.body.appendChild(notification);
-        
-        // Animate in
-        setTimeout(() => {
-            notification.style.transform = 'translateX(0)';
-        }, 100);
-        
-        // Close button functionality
-        const closeBtn = notification.querySelector('.notification-close');
-        closeBtn.addEventListener('click', () => {
-            notification.style.transform = 'translateX(400px)';
-            setTimeout(() => notification.remove(), 300);
-        });
-        
-        // Auto remove after 5 seconds
-        setTimeout(() => {
-            if (notification.parentNode) {
-                notification.style.transform = 'translateX(400px)';
-                setTimeout(() => notification.remove(), 300);
-            }
-        }, 5000);
-    }
-    
     // Intersection Observer for animations
     const observerOptions = {
         threshold: 0.1,
@@ -296,34 +217,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Call init function
     init();
-});
+}
 
-// Add some CSS for notifications
-const notificationStyles = document.createElement('style');
-notificationStyles.textContent = `
-    .notification-content {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-    }
-    
-    .notification-close {
-        background: none;
-        border: none;
-        color: white;
-        font-size: 1.5rem;
-        cursor: pointer;
-        margin-right: auto;
-        padding: 0;
-        line-height: 1;
-    }
-    
-    .notification-close:hover {
-        opacity: 0.8;
-    }
-    
-    .notification i {
-        font-size: 1.2rem;
-    }
-`;
-document.head.appendChild(notificationStyles);
+// Run menu init after includes are loaded
+document.addEventListener('includesLoaded', zarandoozInitMenu);
+// Also run on DOMContentLoaded in case nav is present from the start
+document.addEventListener('DOMContentLoaded', zarandoozInitMenu);
