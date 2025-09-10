@@ -1,55 +1,62 @@
-# Zarandooz Website Deployment Guide
 
-This project uses a single Docker container to serve static files with Nginx and handle contact form submissions securely with a Node.js backend.
+# Zarandooz Website
+
+This project is a static website served with Nginx using Docker. All content is static HTML, CSS, JS, and assets. No backend or Node.js is required.
 
 ## Prerequisites
 
-- Docker installed on your server or local machine
+- Docker installed (for production or preview)
+- Python 3 or Node.js (for local development, optional)
 
-## 1. Configure Environment Variables
+---
 
-Create a `.env` file in the project root with the following content:
+## Local Development
 
+You can preview the static site locally using a simple static server:
+
+**With Python 3:**
 ```
-TELEGRAM_BOT_TOKEN=your_bot_token_here
-TELEGRAM_CHAT_ID=your_chat_id_here
-PORT=3001
+python -m http.server 8000
 ```
+Then open [http://localhost:8000](http://localhost:8000) in your browser.
 
-- Replace `your_bot_token_here` with your Telegram bot token.
-- Replace `your_chat_id_here` with your Telegram chat ID.
-
-## 2. Build the Docker Image
-
-Run the following command in the project root:
-
+**With Node.js (if installed):**
 ```
-docker build -t zarandooz-app .
+npx serve .
 ```
-
-## 3. Run the Container
-
-Run the container, mapping port 80 of the host to the container:
-
+Or install globally:
 ```
-docker run -d -p 80:80 --env-file .env zarandooz-app
+npm install -g serve
+serve .
 ```
 
-- The website will be available at `http://localhost` (or your server's IP).
-- The contact form will securely send messages to your Telegram.
+---
 
-## 4. Notes
+## Production Deployment with Docker
 
-- Both Nginx and the Node.js backend run inside the same container using Supervisor.
-- For production, keep your `.env` file secure and never commit it to version control.
+Build the Docker image:
+```
+docker build -t zarandooz-website .
+```
 
-## 5. Troubleshooting
+Run the container (serves on port 80):
+```
+docker run -d -p 80:80 zarandooz-website
+```
 
-- Check logs with:
+The website will be available at [http://localhost](http://localhost) or your server's IP.
+
+## Notes
+
+- All HTML files use shared header, nav, and footer components for maintainability.
+- No backend or environment variables are required.
+
+## Troubleshooting
+
+- Check Docker logs with:
   ```
   docker logs <container_id>
   ```
-- Make sure your Telegram bot is active and the chat ID is correct.
 
 ---
 
