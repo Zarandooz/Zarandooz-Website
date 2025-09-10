@@ -32,49 +32,19 @@
     />
   </head>
   <body>
-    <!-- Header -->
-    <header class="header">
-      <div class="header-container">
-        <div class="header-left">
-          <a href="index.html" class="logo">
-            <img src="images/logo.png" alt="زراندوز" class="logo-image" />
-            <span class="logo-text">زراندوز</span>
-          </a>
-        </div>
-
-        <nav class="header-nav">
-          <a href="plans.html">پلن‌ها</a>
-          <a href="index.html#features">امکانات پیشرفته</a>
-          <a href="index.html#faq">سوالات متداول</a>
-          <a href="about.html">درباره ما</a>
-        </nav>
-
-        <div class="header-nav">
-          <button class="download-btn primary">دانلود و نصب زراندوز</button>
-        </div>
-
-        <button class="mobile-menu-toggle" id="mobile-menu-toggle">
-          <i class="fas fa-bars"></i>
-        </button>
-      </div>
-    </header>
-
-    <!-- Mobile Navigation -->
-    <nav class="mobile-nav" id="mobile-nav">
-      <a href="plans.html">پلن‌ها</a>
-      <a href="#features">امکانات پیشرفته</a>
-      <a href="#faq">سوالات متداول</a>
-      <a href="#about">درباره ما</a>
-      <a href="#" class="mobile-download-btn">دانلود و نصب زراندوز</a>
-    </nav>
+    <!-- Header Include -->
+    <div include-html="src/components/header.html"></div>
+    <!-- Mobile Navigation Include -->
+    <div include-html="src/components/nav.html"></div>
 
     <!-- Terms of Use Section -->
     <section class="about-section" id="terms">
       <div class="container">
         <div class="about-content">
           <h1 class="about-title">قوانین استفاده از زراندوز</h1>
-          <div class="about-text">
-            <p class="last-update">آخرین به روزرسانی: ۱۴۰۴/۰۶/۰۱</p>
+          <h4 class="about-title">آخرین به‌روزرسانی: ۱۴۰۴/۰۶/۰۱</h4>
+
+          <div class="about-text line-height-48">
 
             <p>
               به زراندوز خوش آمدید! استفاده از نرم‌افزار زراندوز به معنای پذیرش
@@ -176,86 +146,10 @@
       </div>
     </section>
 
-    <!-- Contact Section - Box above footer -->
-    <section class="contact-box">
-      <div class="container">
-        <div class="contact-header">
-          <div class="support-icon">
-            <i class="fas fa-headset"></i>
-          </div>
-          <h2>با ما در ارتباط باشید</h2>
-          <p>سوالات، پیشنهادات و انتقادات خود را با ما به اشتراک بگذارید</p>
-        </div>
-        <div class="contact-form">
-          <div class="form-group">
-            <input
-              type="tel"
-              placeholder="شماره موبایل"
-              class="form-input"
-              dir="rtl"
-            />
-          </div>
-          <div class="form-group">
-            <textarea
-              placeholder="پیام شما"
-              class="form-textarea"
-              dir="rtl"
-            ></textarea>
-          </div>
-          <button class="submit-btn">
-            <i class="fas fa-paper-plane"></i>
-            ارسال
-          </button>
-        </div>
-      </div>
-    </section>
+    <div include-html="src/components/contact.html"></div>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="footer-top">
-        <div class="container padding-60">
-          <div class="footer-content">
-            <div class="footer-section footer-logo-section">
-              <div class="footer-logo">
-                <img
-                  src="images/logo-black.png"
-                  alt="زراندوز"
-                  class="logo-image"
-                />
-                <span class="logo-text">زراندوز</span>
-              </div>
-              <p class="footer-description">
-                تمام حقوق مادی و معنوی این وبسایت متعلق به <a>زراندوز</a> می
-                باشد
-              </p>
-            </div>
-
-            <div class="footer-section footer-social-section">
-              <div class="social-icons">
-                <a href="#" class="social-icon" title="اینستاگرام">
-                  <i class="fab fa-instagram"></i>
-                </a>
-                <a href="#" class="social-icon" title="تلگرام">
-                  <i class="fab fa-telegram"></i>
-                </a>
-                <a href="#" class="social-icon" title="واتساپ">
-                  <i class="fab fa-whatsapp"></i>
-                </a>
-                <a href="#" class="social-icon" title="ایمیل">
-                  <i class="fas fa-envelope"></i>
-                </a>
-              </div>
-              <div class="social-icons" style="margin-top: 30px">
-                <a href="about.html" class="text">درباره ما</a>
-                <a href="policies.html" class="text">حریم خصوصی</a>
-                <a href="rules.html" class="text">قوانین و مقررات</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-
+    <div include-html="src/components/footer.html"></div>
+    <script src="src/components/include-html.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

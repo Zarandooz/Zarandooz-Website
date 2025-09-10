@@ -32,41 +32,10 @@
     />
   </head>
   <body>
-    <!-- Header -->
-    <header class="header">
-      <div class="header-container">
-        <div class="header-left">
-          <a href="index.html" class="logo">
-            <img src="images/logo.png" alt="زراندوز" class="logo-image" />
-            <span class="logo-text">زراندوز</span>
-          </a>
-        </div>
-
-        <nav class="header-nav">
-          <a href="plans.html">پلن‌ها</a>
-          <a href="index.html#features">امکانات پیشرفته</a>
-          <a href="index.html#faq">سوالات متداول</a>
-          <a href="about.html">درباره ما</a>
-        </nav>
-
-        <div class="header-nav">
-          <button class="download-btn primary">دانلود و نصب زراندوز</button>
-        </div>
-
-        <button class="mobile-menu-toggle" id="mobile-menu-toggle">
-          <i class="fas fa-bars"></i>
-        </button>
-      </div>
-    </header>
-
-    <!-- Mobile Navigation -->
-    <nav class="mobile-nav" id="mobile-nav">
-      <a href="plans.html">پلن‌ها</a>
-      <a href="#features">امکانات پیشرفته</a>
-      <a href="#faq">سوالات متداول</a>
-      <a href="#about">درباره ما</a>
-      <a href="#" class="mobile-download-btn">دانلود و نصب زراندوز</a>
-    </nav>
+    <!-- Header Include -->
+    <div include-html="src/components/header.html"></div>
+    <!-- Mobile Navigation Include -->
+    <div include-html="src/components/nav.html"></div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -232,164 +201,14 @@
       </div>
     </section>
 
-    <!-- Call to Action Section -->
-    <!-- <section class="cta">
-      <div class="container">
-        <div class="cta-content">
-          <div class="cta-text">
-            <h2>اشتراک هدیه ۳۰ روزه برای شروع</h2>
-            <p>
-              با دانلود زراندوز اشتراک هدیه رو فعال کن و به تمام امکانات دسترسی
-              داشته باش
-            </p>
-            <button class="download-btn primary large">
-              دانلود و نصب زراندوز
-            </button>
-          </div>
-          <div class="cta-visual">
-            <div class="phone-container">
-              <div class="phone-mockup">
-                <div class="phone-screen festive">
-                  <div class="gift-screen">
-                    <div class="logo-gift">Z</div>
-                    <div class="stars">
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                    </div>
-                    <div class="gift-box">
-                      <i class="fas fa-gift"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> -->
-
     <!-- FAQ Section -->
-    <section class="faq" id="faq">
-      <div class="container">
-        <div class="section-header">
-          <h2>سوالات متداول</h2>
-          <p>سوالی برات پیش اومده؟ جوابش اینجاست</p>
-        </div>
-        <div class="faq-list">
-          <div class="faq-item">
-            <div class="faq-question">
-              <span
-                >می تونم پیامک های بانکی رو بصورت خودکار وارد زراندوز کنم؟</span
-              >
-              <i class="fas fa-plus"></i>
-            </div>
-            <div class="faq-answer">
-              <p>
-                بله! کافیه هنگام اضافه‌کردن کارت جدید، گزینه «خواندن پیامک‌های
-                بانک» رو فعال کرده و سرشماره پیامکی متعلق به بانکتون رو از لیست
-                پیامک‌ها انتخاب کنین. می‌تونین حداکثر ۳ سرشماره برای هر کارت
-                بانکی انتخاب کنین. پیامک‌های بانکی جدید رو از صفحه «افزودن
-                تراکنش» یا از طریق «علامت پیامک» بالای صفحه ببینین.
-              </p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question">
-              <span>پیامک بانکی من چند سرشماره داره چه کار کنم؟</span>
-              <i class="fas fa-plus"></i>
-            </div>
-            <div class="faq-answer">
-              <p>
-                در صفحه کارت مدنظر، با انتخاب گزینه «افزودن سرشماره جدید»
-                می‌تونین تا حداکثر ۳ سرشماره برای هر کارت وارد کنین.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <div include-html="src/components/faq.html"></div>
 
-    <!-- Contact Section - Box above footer -->
-    <section class="contact-box" id="about">
-      <div class="container">
-        <div class="contact-header">
-          <div class="support-icon">
-            <i class="fas fa-headset"></i>
-          </div>
-          <h2>با ما در ارتباط باشید</h2>
-          <p>سوالات، پیشنهادات و انتقادات خود را با ما به اشتراک بگذارید</p>
-        </div>
-        <div class="contact-form">
-          <div class="form-group">
-            <input
-              type="tel"
-              placeholder="شماره موبایل"
-              class="form-input"
-              dir="rtl"
-            />
-          </div>
-          <div class="form-group">
-            <textarea
-              placeholder="پیام شما"
-              class="form-textarea"
-              dir="rtl"
-            ></textarea>
-          </div>
-          <button class="submit-btn">
-            <i class="fas fa-paper-plane"></i>
-            ارسال
-          </button>
-        </div>
-      </div>
-    </section>
+    <div include-html="src/components/contact.html"></div>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="footer-top">
-        <div class="container padding-60">
-          <div class="footer-content">
-            <div class="footer-section footer-logo-section">
-              <div class="footer-logo">
-                <img
-                  src="images/logo-black.png"
-                  alt="زراندوز"
-                  class="logo-image"
-                />
-                <span class="logo-text">زراندوز</span>
-              </div>
-              <p class="footer-description">
-                تمام حقوق مادی و معنوی این وبسایت متعلق به <a>زراندوز</a> می
-                باشد
-              </p>
-            </div>
+    <div include-html="src/components/footer.html"></div>
 
-            <div class="footer-section footer-social-section">
-              <div class="social-icons">
-                <a href="#" class="social-icon" title="اینستاگرام">
-                  <i class="fab fa-instagram"></i>
-                </a>
-                <a href="#" class="social-icon" title="تلگرام">
-                  <i class="fab fa-telegram"></i>
-                </a>
-                <a href="#" class="social-icon" title="واتساپ">
-                  <i class="fab fa-whatsapp"></i>
-                </a>
-                <a href="#" class="social-icon" title="ایمیل">
-                  <i class="fas fa-envelope"></i>
-                </a>
-              </div>
-              <div class="social-icons" style="margin-top: 30px">
-                <a href="about.html" class="text">درباره ما</a>
-                <a href="policies.html" class="text">حریم خصوصی</a>
-                <a href="rules.html" class="text">قوانین و مقررات</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-
+    <script src="src/components/include-html.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

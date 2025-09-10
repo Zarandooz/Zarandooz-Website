@@ -1,3 +1,31 @@
+// Contact form AJAX submission
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('contactForm');
+    if (form) {
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const email = form.email.value;
+            const message = form.message.value;
+            const statusDiv = document.getElementById('formStatus');
+            statusDiv.textContent = '';
+            try {
+                const res = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, message })
+                });
+                if (res.ok) {
+                    statusDiv.textContent = 'پیام شما با موفقیت ارسال شد!';
+                    form.reset();
+                } else {
+                    statusDiv.textContent = 'ارسال پیام با خطا مواجه شد.';
+                }
+            } catch (err) {
+                statusDiv.textContent = 'ارسال پیام با خطا مواجه شد.';
+            }
+        });
+    }
+});
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     
