@@ -33,5 +33,5 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!stillLoading) {
       document.dispatchEvent(new Event('includesLoaded'));
     }
-  }, 100);
+  }, 300);
 });
