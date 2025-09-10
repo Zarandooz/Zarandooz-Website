@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  web:
+    image: nginx:alpine
+    container_name: zarandooz-website
+    ports:
+      - "80:80"
+    volumes:
+      - .:/usr/share/nginx/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    dns:
+      - 178.22.122.100
+      - 185.51.200.2
