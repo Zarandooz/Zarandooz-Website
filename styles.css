@@ -230,7 +230,7 @@ body {
   width: 100%;
   z-index: 1000;
   background: transparent;
-  transition: background 1.7s, box-shadow 1.7s, backdrop-filter 1.7s;
+  transition: background 2.5s, box-shadow 2.5s, backdrop-filter 2.5s;
   box-shadow: none;
   backdrop-filter: none;
 }
