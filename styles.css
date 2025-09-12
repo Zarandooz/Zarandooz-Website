@@ -200,7 +200,7 @@
 body {
   font-family: "Vazirmatn", "Tahoma", "Arial", sans-serif;
   line-height: 1.6;
-  color: #333;
+  color: #4B4B4B;
   background-color: #fafafa;
   direction: rtl;
   -webkit-text-size-adjust: 100%;
@@ -265,7 +265,7 @@ body {
 
 .header-left .download-btn {
   background: #FFD369;
-  color: #333;
+  color: #4B4B4B;
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
@@ -579,12 +579,12 @@ body {
 
 .feature-icon i {
   font-size: 1.5rem;
-  color: #333;
+  color: #4B4B4B;
 }
 
 .feature-card h3 {
   font-size: 1.3rem;
-  color: #333;
+  color: #4B4B4B;
   margin-bottom: 1rem;
 }
 
@@ -668,7 +668,7 @@ body {
 .account-balance {
   margin-right: auto;
   font-weight: 500;
-  color: #333;
+  color: #4B4B4B;
 }
 
 /* Category Cards */
@@ -854,7 +854,7 @@ body {
 
 .faq-question span {
   font-weight: 500;
-  color: #333;
+  color: #4B4B4B;
 }
 
 .faq-question i {
@@ -1002,7 +1002,7 @@ body {
 .footer-logo .logo-text {
   font-size: 28px;
   font-weight: 700;
-  color: #333;
+  color: #4B4B4B;
 }
 
 .footer-description {
@@ -1015,7 +1015,7 @@ body {
 .footer-title {
   font-size: 1.1rem;
   font-weight: 700;
-  color: #333;
+  color: #4B4B4B;
   margin-bottom: 1.5rem;
 }
 
@@ -1034,7 +1034,7 @@ body {
 }
 
 .footer-nav a:hover {
-  color: #333;
+  color: #4B4B4B;
 }
 
 .social-icons {
@@ -1103,7 +1103,7 @@ body {
 }
 
 .footer-bottom-links a:hover {
-  color: #333;
+  color: #4B4B4B;
 }
 
 /* Mobile Menu */
@@ -2025,7 +2025,7 @@ button:hover,
   justify-content: center;
   margin: -60px auto 10px;
   background: #e9e9e9;
-  color: #333;
+  color: #4B4B4B;
   font-size: 1.4rem;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
 }
@@ -2081,7 +2081,7 @@ button:hover,
 }
 .plan-gold .download-btn.primary {
   background: #ffd369;
-  color: #333;
+  color: #4B4B4B;
 }
 
 .plan-bronze {
