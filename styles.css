@@ -257,6 +257,12 @@ body {
   margin: 0 auto;
 }
 
+.header-left{
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
 .header-left .download-btn {
   background: #ffd700;
   color: #333;
