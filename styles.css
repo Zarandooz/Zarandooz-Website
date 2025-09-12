@@ -1953,7 +1953,6 @@ button,
 
 button:hover,
 .download-btn:hover {
-  background: #ffe799;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   transform: translateY(-2px);
 }
