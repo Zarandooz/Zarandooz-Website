@@ -224,20 +224,26 @@ body {
 
 /* Header */
 .header {
-  top: 0;
-  left: 0;
-  right: 0;
+  position: fixed; /* Always fixed to prevent jumping */
+  top: 10px; /* Start with the same margin as the scrolled state */
+  left: 50%; /* Used for centering */
+  transform: translateX(-50%); /* Center the header */
   width: 100%;
+  max-width: 100%; /* Start at full width */
   z-index: 1000;
   background: transparent;
-  transition: background 2.5s, box-shadow 2.5s, backdrop-filter 2.5s;
   box-shadow: none;
-  backdrop-filter: none;
+  border: 1.5px solid transparent; /* Start with a transparent border */
+  border-radius: 18px;
+  backdrop-filter: blur(0px) saturate(100%);
+  -webkit-backdrop-filter: blur(0px) saturate(100%);
+
+  /* A faster, smoother transition that applies to all changing properties */
+  transition: all 0.4s ease-in-out;
 }
 
 .header.scrolled {
   position: fixed;
-
   background: rgba(255, 255, 255, 0.6);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18),
     0 1.5px 8px 0 rgba(0, 0, 0, 0.08);
@@ -334,6 +340,7 @@ body {
 /* Hero Section */
 .hero {
   /* padding: 120px 0 80px; */
+  padding-top: 140px;
   background: #fafafa;
 }
 
