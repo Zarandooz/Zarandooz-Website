@@ -264,7 +264,7 @@ body {
 }
 
 .header-left .download-btn {
-  background: #ffd700;
+  background: #FFD369;
   color: #333;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -329,7 +329,7 @@ body {
 }
 
 .header-nav a:hover {
-  color: #ffd700;
+  color: #FFD369;
 }
 
 /* Hero Section */
@@ -355,7 +355,7 @@ body {
 }
 
 .hero-title .highlight {
-  color: #ffd700;
+  color: #FFD369;
   font-weight: bold;
 }
 
@@ -569,7 +569,7 @@ body {
 .feature-icon {
   width: 60px;
   height: 60px;
-  background: #ffd700;
+  background: #FFD369;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -639,7 +639,7 @@ body {
 
 .progress-fill {
   height: 100%;
-  background: #ffd700;
+  background: #FFD369;
   border-radius: 4px;
   transition: width 0.3s ease;
 }
@@ -770,7 +770,7 @@ body {
 }
 
 .phone-screen.festive {
-  background: linear-gradient(135deg, #ffd700, #ffa500);
+  background: linear-gradient(135deg, #FFD369, #ffa500);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -858,7 +858,7 @@ body {
 }
 
 .faq-question i {
-  color: #ffd700;
+  color: #FFD369;
   transition: transform 0.3s ease;
 }
 
@@ -1159,7 +1159,7 @@ body {
 
 .mobile-nav a:hover {
   background: #f8f9fa;
-  color: #ffd700;
+  color: #FFD369;
 }
 
 .mobile-nav .mobile-download-btn {
