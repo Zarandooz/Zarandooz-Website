@@ -67,13 +67,13 @@ function zarandoozInitMenu() {
             faqItems.forEach(faqItem => {
                 faqItem.classList.remove('active');
                 const faqIcon = faqItem.querySelector('.faq-question i');
-                faqIcon.className = 'fas fa-plus';
+                faqIcon.className = 'ti ti-plus';
             });
             
             // Open clicked item if it wasn't active
             if (!isActive) {
                 item.classList.add('active');
-                icon.className = 'fas fa-minus';
+                icon.className = 'ti ti-minus';
             }
         });
     });
@@ -113,7 +113,7 @@ function zarandoozInitMenu() {
             }, 150);
             
             // You can add actual download logic here
-            console.log('Download button clicked:', this.textContent.trim());
+            // console.log('Download button clicked:', this.textContent.trim());
         });
     });
     
