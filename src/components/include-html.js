@@ -25,9 +25,7 @@ function includeHTML() {
 }
 document.addEventListener('DOMContentLoaded', includeHTML);
 
-// Dispatch a custom event after all includes are loaded
 document.addEventListener('DOMContentLoaded', function() {
-  // Wait for all includes to finish (naive, but works for this use case)
   setTimeout(function() {
     var stillLoading = document.querySelector('[include-html]');
     if (!stillLoading) {
